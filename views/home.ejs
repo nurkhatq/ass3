@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="\css\styles.css">
+</head>
+<body>
+    <% posts.forEach((post) => { %>
+        <div class="postStyle">
+            <h3><%= post.title %></h3>
+            <p>
+                <% var shortText = post.content %>
+                <% if (shortText.length > 100) { %>
+                    <% var truncatedShortText = shortText.substring(0, 100) %>
+                    <%= truncatedShortText %>
+                    <a href="posts/<%= encodeURIComponent(post.title) %>">Read More</a>
+                <% } else { %>
+                    <%= shortText %>
+                <% } %>
+            </p>
+        </div>
+    <% }) %>
+    <form action="/compose" method="get">
+        <button type="submit">Compose</button>
+    </form>
+</body>
+</html>
+
